@@ -55,6 +55,10 @@ class Hilo(et: ImageView, este : MainActivity, cartacompleta:ArrayList<Cartacomp
     fun pausarHilo(){
         pausar=true
     }
+    fun pausarHiloymas(){
+        pausar=true
+        variable=0
+    }
     fun despausarHilo(){
         pausar=false
     }

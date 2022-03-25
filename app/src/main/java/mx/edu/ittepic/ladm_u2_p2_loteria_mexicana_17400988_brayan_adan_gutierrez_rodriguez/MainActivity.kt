@@ -15,6 +15,7 @@ import kotlin.random.Random
 class MainActivity : AppCompatActivity() {
     var primeravez = true
     var segundavez = true
+    var terceravez =true
     lateinit var mp: MediaPlayer
     lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,14 +57,33 @@ class MainActivity : AppCompatActivity() {
         binding.pausar.setVisibility(View.INVISIBLE);
         binding.fin.setVisibility(View.INVISIBLE);
         binding.iniciar.setVisibility(View.INVISIBLE);
+        binding.playagain.setVisibility(View.INVISIBLE);
+
 
         this.setTitle("LOTERIA V3.3")
-
         llenar(cartascompletas, cartas, cartasS)
+
+
 
 
         //CREACION DEL HILO
         val hilo = Hilo(binding.imagen, this, cartascompletas)
+
+        //BOTON PLAYAGAIN
+        binding.playagain.setOnClickListener {
+            hilo.pausarHiloymas()
+            binding.playagain.setVisibility(View.INVISIBLE)
+           // val hilo2 = Hilo(binding.imagen, this, cartascompletas)
+            segundavez = true
+            terceravez=true
+            binding.imagen.setImageResource(R.drawable.carta1pro)
+            binding.terminar.setVisibility(View.INVISIBLE)
+            binding.pausar.setVisibility(View.INVISIBLE)
+            binding.fin.setVisibility(View.INVISIBLE)
+            binding.iniciar.setVisibility(View.INVISIBLE)
+            binding.barajear.setVisibility(View.VISIBLE)
+            binding.iniciar.setText("Iniciar")
+        }
 
 
         //BOTON PARA INICIAR EL HILO CON BANDERA PARA EL PAUSE
@@ -97,15 +117,21 @@ class MainActivity : AppCompatActivity() {
                 }
             } else {
                 binding.fin.setVisibility(View.VISIBLE);
-                binding.fin.setVisibility(View.VISIBLE);
+                binding.playagain.setVisibility(View.VISIBLE);
                 binding.iniciar.setVisibility(View.INVISIBLE)
                 binding.terminar.setVisibility(View.INVISIBLE)
                 binding.pausar.setVisibility(View.INVISIBLE)
-                try {
-                    hilo.despausarHilo()
-                } catch (e: Exception) {
+                hilo.despausarHilo()
+            }
+                if(terceravez==true){
+                    binding.pausar.setVisibility(View.VISIBLE);
+                    binding.terminar.setVisibility(View.VISIBLE);
+                    binding.iniciar.setVisibility(View.INVISIBLE);
+                    binding.playagain.setVisibility(View.INVISIBLE);
+                    terceravez=false
                 }
-            };
+
+
         }
 
         //BOTON DE PAUSAR CON BANDERA

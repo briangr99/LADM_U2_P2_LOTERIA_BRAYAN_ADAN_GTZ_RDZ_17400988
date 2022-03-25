@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
 
@@ -13,11 +14,23 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/barajear"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="!Barajea las cartas!" />
+            android:layout_height="47dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/barajear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="!Barajea las cartas!" />
+
+            <Button
+                android:id="@+id/playagain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="JUGAR OTRA VEZ" />
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/imagen"
@@ -49,8 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Pausar"
-                />
+                android:text="Pausar" />
 
             <Space
                 android:layout_width="1dp"
